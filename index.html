@@ -560,7 +560,7 @@ body {
 }
 
 .page-wrap {
-  max-width: 430px;
+  max-width: 100%;
   background: #1a1209;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
 }
@@ -717,14 +717,20 @@ section {
 
 @media (min-width: 1024px) {
   .page-wrap {
-    max-width: 460px;
+    max-width: 100%;
   }
 
   .hero h1 { font-size: 50px; }
   .hero .subtitle { font-size: 21px; }
-  .product-grid { grid-template-columns: 1fr 1fr; }
-  .cart-list { grid-template-columns: 1fr; }
-  .cart-actions { grid-template-columns: 1fr; }
+  .product-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .cart-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cart-actions { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  .page-wrap {
+    max-width: 430px;
+  }
 }
 </style>
 </head>
