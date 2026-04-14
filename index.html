@@ -28,11 +28,12 @@ a { text-decoration: none; color: inherit; }
   --gold: #e3982e;
   --dark: #1a1209;
   --warm: #3d2b1a;
-  --max-w: 520px;
+  --max-w: 100%;
 }
 
 /* ========== LAYOUT ========== */
 .page-wrap {
+  width: 100%;
   max-width: var(--max-w);
   margin: 0 auto;
   background: var(--dark);
@@ -78,6 +79,69 @@ section { position: relative; overflow: hidden; }
   .float-buy-mobile { display: block; }
   .page-wrap { max-width: 100%; }
   body { padding-bottom: 56px; }
+}
+
+@media (min-width: 1024px) {
+  .hero h1 { font-size: 56px; }
+  .hero .subtitle { font-size: 22px; }
+  .hero .tags span { font-size: 14px; }
+
+  .empathy-cards {
+    max-width: 1080px;
+    margin: 0 auto 32px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sensory-grid { grid-template-columns: repeat(4, 1fr); }
+  .selling-point { min-height: 72vh; }
+
+  .ingredients {
+    max-width: 1080px;
+    margin: 0 auto 24px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .review-cards {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .intl-grid {
+    max-width: 980px;
+    margin: 0 auto;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .product-grid {
+    max-width: 1080px;
+    margin: 0 auto;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 575px) {
+  .hero { min-height: 90vh; padding: 32px 20px 40px; }
+  .hero h1 { font-size: 34px; }
+  .hero .subtitle { font-size: 16px; }
+
+  .empathy,
+  .sp-pure,
+  .reviews,
+  .international,
+  .faq,
+  .footer-cta { padding-left: 20px; padding-right: 20px; }
+
+  .sensory-intro,
+  .sensory-bottom,
+  .selling-point,
+  .mid-cta,
+  .urgency { padding-left: 20px; padding-right: 20px; }
+
+  .product-grid { grid-template-columns: 1fr; }
 }
 
 /* ========== 1: HERO ========== */
@@ -334,6 +398,98 @@ section { position: relative; overflow: hidden; }
 }
 .product-card .buy-link:hover { background: var(--gold); color: var(--brown); }
 
+/* ========== 購物車區 ========== */
+.cart {
+  background: #fff;
+  padding: 56px 20px;
+  color: var(--brown);
+}
+.cart-wrap { max-width: 1080px; margin: 0 auto; }
+.cart h2 { font-size: 28px; font-weight: 900; text-align: center; margin-bottom: 8px; }
+.cart .sub { text-align: center; color: #7a6a58; font-size: 14px; margin-bottom: 28px; }
+.cart-list { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.cart-item {
+  border: 1px solid #eadfce;
+  border-radius: 14px;
+  padding: 14px;
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  gap: 12px;
+  align-items: center;
+}
+.cart-item img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  background: #f9f4ed;
+  border-radius: 10px;
+  padding: 4px;
+}
+.cart-item .name { font-size: 16px; font-weight: 700; }
+.cart-item .price { font-size: 14px; color: var(--gold); font-weight: 700; }
+.qty-control {
+  display: inline-flex;
+  border: 1px solid #e2d3bf;
+  border-radius: 999px;
+  overflow: hidden;
+}
+.qty-btn {
+  width: 34px;
+  height: 34px;
+  border: none;
+  background: #f8f2e8;
+  color: var(--brown);
+  font-size: 18px;
+  cursor: pointer;
+}
+.qty-input {
+  width: 48px;
+  border: none;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--brown);
+}
+.qty-input:focus { outline: none; }
+.cart-summary {
+  margin-top: 20px;
+  background: #fff8ed;
+  border: 1px solid #f0ddbe;
+  border-radius: 14px;
+  padding: 18px;
+}
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+.summary-row.total {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed #ddc9a8;
+  font-size: 20px;
+  font-weight: 900;
+}
+.cart-actions {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+.btn-cart {
+  display: block;
+  text-align: center;
+  border-radius: 10px;
+  padding: 12px;
+  font-weight: 700;
+  font-size: 15px;
+  border: 1px solid transparent;
+}
+.btn-cart-primary { background: var(--gold); color: var(--brown); }
+.btn-cart-secondary { border-color: #dbc8ab; color: #715c44; background: #fff; }
+
 /* ========== 11: 急迫感 ========== */
 .urgency {
   position: relative;
@@ -383,13 +539,200 @@ section { position: relative; overflow: hidden; }
 .footer-links a { font-size: 13px; opacity: 0.5; transition: opacity 0.2s; }
 .footer-links a:hover { opacity: 1; }
 .footer-copy { margin-top: 24px; font-size: 11px; opacity: 0.3; }
+
+@media (max-width: 575px) {
+  .cart h2 { font-size: 24px; }
+  .cart-item { grid-template-columns: 56px 1fr; }
+  .cart-item .qty-control { grid-column: span 2; justify-self: end; }
+}
+
+@media (min-width: 1024px) {
+  .cart-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cart-actions { grid-template-columns: 1fr 1fr; }
+}
+
+/* ========== LP 視覺精修（mobile-first） ========== */
+body {
+  background:
+    radial-gradient(circle at 30% -10%, #3a2715 0%, transparent 45%),
+    radial-gradient(circle at 100% 0%, #2b1d10 0%, transparent 40%),
+    #120a04;
+}
+
+.page-wrap {
+  max-width: 430px;
+  background: #1a1209;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+}
+
+section {
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.hero {
+  min-height: 94vh;
+  padding: 38px 20px 52px;
+}
+
+.hero h1 {
+  font-size: 52px;
+  letter-spacing: 0.22em;
+  line-height: 1.22;
+}
+
+.hero .subtitle {
+  font-size: 21px;
+  line-height: 1.65;
+  margin-bottom: 22px;
+}
+
+.hero .tags span {
+  background: rgba(0,0,0,0.32);
+  border-color: rgba(255,255,255,0.28);
+}
+
+.lp-chip {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  margin-bottom: 14px;
+  border: 1px solid rgba(255,255,255,0.35);
+  background: rgba(0,0,0,0.28);
+  color: #fff;
+}
+
+.lp-chip.dark {
+  color: #5a3a19;
+  background: rgba(227,152,46,0.18);
+  border-color: rgba(227,152,46,0.5);
+}
+
+.hero-cta {
+  display: inline-block;
+  margin-top: 16px;
+  background: var(--gold);
+  color: var(--brown);
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.section-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.empathy,
+.sp-pure,
+.products,
+.reviews,
+.international,
+.faq,
+.footer-cta,
+.cart {
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+.empathy-card,
+.review-card,
+.ingredient-item,
+.product-card,
+.cart-item,
+.cart-summary {
+  border-radius: 14px;
+}
+
+.products {
+  padding-top: 58px;
+  padding-bottom: 58px;
+}
+
+.product-grid {
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.product-card .info {
+  padding: 12px 10px;
+}
+
+.product-card .flavor {
+  font-size: 15px;
+}
+
+.product-card .price {
+  font-size: 13px;
+}
+
+.cart {
+  padding-top: 58px;
+  padding-bottom: 58px;
+}
+
+.cart h2 {
+  font-size: 24px;
+}
+
+.cart-plan {
+  margin-bottom: 14px;
+  border: 2px solid #f1d3a3;
+  background: linear-gradient(180deg, #fff8ec 0%, #fff 100%);
+}
+
+.cart-item.main .name {
+  font-size: 17px;
+}
+
+.cart-item.main .price {
+  font-size: 16px;
+}
+
+.cart-note {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  color: #7d6548;
+  background: #fff4de;
+}
+
+.addon-title {
+  margin: 18px 0 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #7f684e;
+}
+
+.cart-actions .btn-cart {
+  border-radius: 999px;
+  padding: 13px 14px;
+}
+
+@media (min-width: 1024px) {
+  .page-wrap {
+    max-width: 460px;
+  }
+
+  .hero h1 { font-size: 50px; }
+  .hero .subtitle { font-size: 21px; }
+  .product-grid { grid-template-columns: 1fr 1fr; }
+  .cart-list { grid-template-columns: 1fr; }
+  .cart-actions { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
 
 <!-- 懸浮購買按鈕 -->
-<a href="https://38bear.com/twshop/" target="_blank" class="float-buy">立即選購</a>
-<a href="https://38bear.com/twshop/" target="_blank" class="float-buy-mobile">立即選購</a>
+<a href="#cart" class="float-buy">立即選購</a>
+<a href="#cart" class="float-buy-mobile">立即選購</a>
 
 <div class="page-wrap">
 
@@ -397,6 +740,7 @@ section { position: relative; overflow: hidden; }
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-content">
+      <span class="lp-chip">38BEAR LAYER ROLLS</span>
       <h1><span>酥・脆・薄・香</span></h1>
       <p class="subtitle">小朋友開心吃，長輩放心吃<br>只有手工才能做出來的千層蛋捲</p>
       <div class="tags">
@@ -404,11 +748,13 @@ section { position: relative; overflow: hidden; }
         <span>全台宅配</span>
         <span>Google 4.9 星</span>
       </div>
+      <a href="#cart" class="hero-cta">立即下單</a>
     </div>
   </section>
 
   <!-- 2: 情境共鳴 -->
   <section class="empathy">
+    <span class="lp-chip dark">01 你的日常困擾</span>
     <div class="section-label">—— 你有沒有遇過這種情況？ ——</div>
     <div class="empathy-cards">
       <div class="empathy-card">
@@ -426,6 +772,7 @@ section { position: relative; overflow: hidden; }
   <!-- 3: 酥脆薄香 -->
   <section class="sensory">
     <div class="sensory-intro">
+      <span class="lp-chip">02 口感關鍵字</span>
       <h2>忘掉你對蛋捲的印象。</h2>
       <p>一顆剛好是一口的大小——</p>
     </div>
@@ -477,6 +824,7 @@ section { position: relative; overflow: hidden; }
 
   <!-- 6: 成分單純 -->
   <section class="sp-pure">
+    <span class="lp-chip dark">03 爸媽最在意</span>
     <h2>成分單純</h2>
     <h3>爸媽放心</h3>
     <div class="ingredients">
@@ -525,6 +873,7 @@ section { position: relative; overflow: hidden; }
 
   <!-- 8: 五星好評 -->
   <section class="reviews">
+    <span class="lp-chip">04 真實口碑</span>
     <h2>感謝客人的五星好評</h2>
     <p class="stats">Google <strong>4.9</strong> 星 ∣ <strong>770+</strong> 真實評論</p>
     <div class="review-cards">
@@ -553,6 +902,7 @@ section { position: relative; overflow: hidden; }
 
   <!-- 9: 日本香港 -->
   <section class="international">
+    <span class="lp-chip">05 海外旅客也回購</span>
     <h2>連日本、香港的客人<br>都指名要買</h2>
     <p class="sub">不只台灣人愛吃，海外旅客吃過一次就回購</p>
     <p class="desc">來台旅遊的日本、香港客人，吃過之後主動在社群分享，甚至託朋友代購寄回去。「酥脆薄香」跨越語言，好吃就是好吃。</p>
@@ -577,7 +927,8 @@ section { position: relative; overflow: hidden; }
   </section>
 
   <!-- 10: 商品展示 -->
-  <section class="products">
+  <section class="products" id="products">
+    <span class="lp-chip dark">06 挑選口味</span>
     <h2>選擇你的口味</h2>
     <p class="sub">每罐 30 片手工千層蛋捲 ∣ 常溫保存不需冷藏</p>
     <div class="product-grid">
@@ -624,18 +975,108 @@ section { position: relative; overflow: hidden; }
     </div>
   </section>
 
+  <!-- 11: 購物車 -->
+  <section class="cart" id="cart">
+    <div class="cart-wrap">
+      <span class="lp-chip dark">07 立即結帳</span>
+      <h2>先選主方案，再加購喜歡口味</h2>
+      <p class="sub">單頁購物車流程：主方案必選，加價購自由搭配</p>
+      <div class="cart-list cart-plan">
+        <article class="cart-item main" data-price="520">
+          <img src="images/商品去背照 (原味).png" alt="原味">
+          <div>
+            <p class="name">家庭分享主方案（3 罐）</p>
+            <p class="price">NT$520</p>
+            <p class="cart-note">人氣組合：原味 ×1、巧克力 ×1、抹茶 ×1</p>
+          </div>
+          <div class="qty-control">
+            <button class="qty-btn minus" type="button">-</button>
+            <input class="qty-input" type="number" min="0" value="1">
+            <button class="qty-btn plus" type="button">+</button>
+          </div>
+        </article>
+      </div>
+      <p class="addon-title">加價購（選填）</p>
+      <div class="cart-list">
+        <article class="cart-item" data-price="180">
+          <img src="images/商品去背照 (原味).png" alt="原味">
+          <div>
+            <p class="name">原味加購</p>
+            <p class="price">NT$180</p>
+          </div>
+          <div class="qty-control">
+            <button class="qty-btn minus" type="button">-</button>
+            <input class="qty-input" type="number" min="0" value="0">
+            <button class="qty-btn plus" type="button">+</button>
+          </div>
+        </article>
+        <article class="cart-item" data-price="200">
+          <img src="images/商品去背照 (巧克力).png" alt="巧克力">
+          <div>
+            <p class="name">巧克力加購</p>
+            <p class="price">NT$200</p>
+          </div>
+          <div class="qty-control">
+            <button class="qty-btn minus" type="button">-</button>
+            <input class="qty-input" type="number" min="0" value="0">
+            <button class="qty-btn plus" type="button">+</button>
+          </div>
+        </article>
+        <article class="cart-item" data-price="200">
+          <img src="images/商品去背照 (抹茶).png" alt="抹茶">
+          <div>
+            <p class="name">抹茶加購</p>
+            <p class="price">NT$200</p>
+          </div>
+          <div class="qty-control">
+            <button class="qty-btn minus" type="button">-</button>
+            <input class="qty-input" type="number" min="0" value="0">
+            <button class="qty-btn plus" type="button">+</button>
+          </div>
+        </article>
+        <article class="cart-item" data-price="220">
+          <img src="images/商品去背照 (鹹蛋黃).png" alt="鹹蛋黃">
+          <div>
+            <p class="name">鹹蛋黃加購</p>
+            <p class="price">NT$220</p>
+          </div>
+          <div class="qty-control">
+            <button class="qty-btn minus" type="button">-</button>
+            <input class="qty-input" type="number" min="0" value="0">
+            <button class="qty-btn plus" type="button">+</button>
+          </div>
+        </article>
+      </div>
+      <div class="cart-summary">
+        <div class="summary-row">
+          <span>商品數量</span>
+          <strong id="cart-count">0</strong>
+        </div>
+        <div class="summary-row total">
+          <span>小計</span>
+          <strong id="cart-subtotal">NT$0</strong>
+        </div>
+        <div class="cart-actions">
+          <a class="btn-cart btn-cart-primary" href="https://38bear.com/twshop/" target="_blank">帶著這份清單去結帳</a>
+          <a class="btn-cart btn-cart-secondary" href="#products">回到口味介紹</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- 11: 急迫感 -->
   <section class="urgency">
     <div class="urg-bg"></div>
     <div class="urg-content">
       <h2>手工限量<br>賣完等下一批</h2>
       <p>全家人都能享受的手工點心<br>比大品牌禮盒更有心意</p>
-      <a href="https://38bear.com/twshop/" target="_blank" class="btn-gold">現在下單 →</a>
+      <a href="#cart" class="btn-gold">現在下單 →</a>
     </div>
   </section>
 
   <!-- 12: FAQ -->
   <section class="faq">
+    <span class="lp-chip dark">08 常見問題</span>
     <h2>常見問題</h2>
     <div class="faq-item">
       <button class="faq-q">多久到貨？</button>
@@ -661,12 +1102,15 @@ section { position: relative; overflow: hidden; }
       <button class="faq-q">可以退貨嗎？</button>
       <div class="faq-a"><div class="faq-a-inner">7 天內可退，運費我們出。最常見的問題是買太少。</div></div>
     </div>
+    <div class="cart-actions" style="margin-top:24px">
+      <a class="btn-cart btn-cart-primary" href="#cart">我要回上面下單</a>
+    </div>
   </section>
 
   <!-- 13: Footer -->
   <section class="footer-cta">
     <h2>給家人最好的<br>從這一盒開始。</h2>
-    <a href="https://38bear.com/twshop/" target="_blank" class="btn-gold">現在下單 →</a>
+    <a href="#cart" class="btn-gold">現在下單 →</a>
     <p class="trust">🔒 安全加密 ∣ 七天鑑賞期 ∣ 成分單純安心食用</p>
     <div class="footer-links">
       <a href="https://38bear.com" target="_blank">官網</a>
@@ -697,6 +1141,51 @@ document.querySelectorAll('.faq-q').forEach(btn => {
     }
   });
 });
+
+const cartItems = document.querySelectorAll('.cart-item');
+const cartCount = document.getElementById('cart-count');
+const cartSubtotal = document.getElementById('cart-subtotal');
+
+function formatCurrency(value) {
+  return 'NT$' + value.toLocaleString('zh-Hant-TW');
+}
+
+function updateCartSummary() {
+  let totalQty = 0;
+  let totalPrice = 0;
+
+  cartItems.forEach(item => {
+    const price = Number(item.dataset.price || 0);
+    const input = item.querySelector('.qty-input');
+    const qty = Math.max(0, Number(input.value) || 0);
+    input.value = qty;
+    totalQty += qty;
+    totalPrice += qty * price;
+  });
+
+  cartCount.textContent = String(totalQty);
+  cartSubtotal.textContent = formatCurrency(totalPrice);
+}
+
+cartItems.forEach(item => {
+  const input = item.querySelector('.qty-input');
+  const minus = item.querySelector('.minus');
+  const plus = item.querySelector('.plus');
+
+  minus.addEventListener('click', () => {
+    input.value = Math.max(0, (Number(input.value) || 0) - 1);
+    updateCartSummary();
+  });
+
+  plus.addEventListener('click', () => {
+    input.value = (Number(input.value) || 0) + 1;
+    updateCartSummary();
+  });
+
+  input.addEventListener('input', updateCartSummary);
+});
+
+updateCartSummary();
 </script>
 </body>
 </html>
