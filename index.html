@@ -212,12 +212,22 @@ section { position: relative; overflow: hidden; }
 /* ========== 3: 酥脆薄香 ========== */
 .sensory {
   background: var(--dark);
-  padding: 60px 0;
+  padding: 84px 0 72px;
   color: #fff; text-align: center;
 }
-.sensory-intro { padding: 0 28px; margin-bottom: 40px; }
-.sensory-intro h2 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
-.sensory-intro p { font-size: 15px; opacity: 0.7; }
+.sensory-intro { padding: 0 28px; margin-bottom: 44px; }
+.sensory-intro h2 {
+  font-size: clamp(30px, 6.2vw, 48px);
+  font-weight: 900;
+  margin-bottom: 12px;
+  letter-spacing: 0.03em;
+  text-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
+.sensory-intro p {
+  font-size: clamp(15px, 2.6vw, 20px);
+  opacity: 0.95;
+  letter-spacing: 0.04em;
+}
 .sensory-grid { display: grid; grid-template-columns: 1fr 1fr; }
 .sensory-cell {
   position: relative; aspect-ratio: 1;
@@ -228,20 +238,29 @@ section { position: relative; overflow: hidden; }
 .sensory-cell img {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
-  object-fit: cover; opacity: 0.35;
+  object-fit: cover; opacity: 0.52;
 }
 .sensory-cell .label {
   position: relative; z-index: 1;
-  font-size: 48px; font-weight: 900;
+  font-size: clamp(54px, 7vw, 88px); font-weight: 900;
   color: var(--gold); line-height: 1; margin-bottom: 8px;
+  text-shadow: 0 6px 18px rgba(0,0,0,0.45);
 }
 .sensory-cell .desc {
   position: relative; z-index: 1;
-  font-size: 14px; opacity: 0.9; line-height: 1.6;
+  font-size: clamp(13px, 1.5vw, 19px);
+  opacity: 1;
+  line-height: 1.5;
+  font-weight: 700;
+  text-shadow: 0 4px 14px rgba(0,0,0,0.45);
 }
 .sensory-bottom {
-  padding: 32px 28px 0;
-  font-size: 18px; font-weight: 500; opacity: 0.9;
+  padding: 34px 28px 0;
+  font-size: clamp(20px, 2.8vw, 34px);
+  font-weight: 900;
+  opacity: 1;
+  letter-spacing: 0.05em;
+  color: #ffd8a2;
 }
 
 /* ========== 賣點通用 ========== */
